@@ -26,3 +26,15 @@ app.listen(4000, () => {
 app.use("/Api/user", UserRouter)
 
 app.use('/Api/auth', authRouter);
+
+// this is error Handler using Next() midleware
+
+app.use((error, req, res, next) => {
+   const statusCode = error.statusCode || 500;
+   const message = error.message || "Internal server error ";
+   return res.status(statusCode).json({
+      success: false,
+      statusCode,
+      message,
+   });
+});
