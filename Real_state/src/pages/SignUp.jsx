@@ -13,7 +13,7 @@ function SignUp() {
       })
 
    };
-   console.log(formData);
+   // console.log(formData);
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -21,12 +21,12 @@ function SignUp() {
 
          setLoading(true)
 
-         const res = await fetch('http://localhost:4000/Api/routes/auth/signup', {
+         const res = await fetch('http://localhost:4000/Api/auth/sign-up', {
             method: "POST",
             headers: {
                "Content-Type": "application/json"
             },
-            body: JSON.stringify(...formData)
+            body: JSON.stringify(formData)
          });
 
          const data = await res.json()

@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import UserRouter from './routes/user.routes.js';
 import authRouter from './routes/auth.routes.js';
+import cors from 'cors'
 dotenv.config();
 mongoose.connect(process.env.MONGO).then(() => {
    console.log("connected to Db succesfull");
@@ -12,6 +13,7 @@ mongoose.connect(process.env.MONGO).then(() => {
       console.log(error)
    })
 const app = express();
+app.use(cors())
 
 app.use(express.json());
 
