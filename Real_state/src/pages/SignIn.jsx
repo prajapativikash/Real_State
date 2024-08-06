@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+<<<<<<< HEAD
 
 import { useDispatch, useSelector, } from 'react-redux';
 import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice'
@@ -12,6 +13,14 @@ function SignIn() {
    const navigate = useNavigate();
 
    const dispatch = useDispatch();
+=======
+
+function SignIn() {
+   const [formData, setFormData] = useState({});
+   const [error, setError] = useState(null);
+   const [loading, setLoading] = useState(false)
+   const navigate = useNavigate()
+>>>>>>> 570e17cbf7b02926ea8de79d05165b911e0f7d22
    const handlechange = (e) => {
       setFormData({
          ...formData,
@@ -25,9 +34,13 @@ function SignIn() {
       e.preventDefault();
       try {
 
+<<<<<<< HEAD
          // setLoading(true)\
 
          dispatch(signInStart())
+=======
+         setLoading(true)
+>>>>>>> 570e17cbf7b02926ea8de79d05165b911e0f7d22
 
          const res = await fetch('http://localhost:4000/Api/auth/sign-in', {
             method: "POST",
@@ -41,6 +54,7 @@ function SignIn() {
          console.log(data)
 
          if (data.success === false) {
+<<<<<<< HEAD
             dispatch(signInFailure(data.message))
             // setError(data.message);
             // setLoading(false)
@@ -56,6 +70,18 @@ function SignIn() {
          dispatch(signInFailure(error.message))
          // setLoading(false);
          // setError(error.message)
+=======
+            setError(data.message);
+            setLoading(false)
+            return;
+         }
+         setLoading(false)
+         setError(null)
+         navigate('/')
+      } catch (error) {
+         setLoading(false);
+         setError(error.message)
+>>>>>>> 570e17cbf7b02926ea8de79d05165b911e0f7d22
 
       }
    }
