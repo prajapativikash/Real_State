@@ -16,6 +16,7 @@ function OAuth() {
          const auth = getAuth(app);
 
          const result = await signInWithPopup(auth, Provider);
+         console.log('result', result)
 
          const res = await fetch('http://localhost:4000/api/auth/google', {
             method: 'POST',
@@ -25,7 +26,7 @@ function OAuth() {
             body: JSON.stringify({
                name: result.user.displayName,
                email: result.user.email,
-               photo: result.user.photoURL,
+               photo: result.user.avatar,
             }),
          });
 

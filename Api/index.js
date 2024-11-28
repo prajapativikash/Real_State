@@ -4,8 +4,14 @@ import dotenv from 'dotenv'
 import UserRouter from './routes/user.routes.js';
 import authRouter from './routes/auth.routes.js';
 import cors from 'cors'
-dotenv.config();
-mongoose.connect(process.env.MONGO).then(() => {
+
+
+// dotenv.config({ path: './.env' }); its not working properly
+
+let MONGO="mongodb://localhost:27017/RealState;"
+
+console.log("Mongo URI:",MONGO);
+mongoose.connect(MONGO).then(() => {
    console.log("connected to Db succesfull");
 })
 

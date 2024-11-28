@@ -5,6 +5,7 @@ import { useDispatch, useSelector, } from 'react-redux';
 import { signInFailure, signInStart, signInSuccess } from '../redux/user/userSlice'
 import OAuth from '../components/OAuth';
 
+
 function SignIn() {
    const [formData, setFormData] = useState({});
 
@@ -44,7 +45,7 @@ function SignIn() {
          if (data.success === false) {
             dispatch(signInFailure(data.message))
             // setError(data.message);
-            // setLoading(false)
+            // setLoading(false) 
             return;
          }
          // setLoading(false)
@@ -67,7 +68,7 @@ function SignIn() {
             <h1 className='text-3xl font-semibold text-center my-7'>Sign In</h1>
             <form onSubmit={handleSubmit} className='flex flex-col gap-4' >
 
-               <input onChange={handlechange} type="text" placeholder='Emai' className='border p-3 rounded-lg ' id='email' />
+               <input onChange={handlechange} type="text" placeholder='Email' className='border p-3 rounded-lg ' id='email' />
 
                <input onChange={handlechange}
                   type="text" placeholder='password' className='border p-3 rounded-lg ' id='password' />

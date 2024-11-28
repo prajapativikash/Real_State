@@ -42,6 +42,7 @@ export const signIn = async (req, res, next) => {
 
 export const google = async (req, res, next) => {
    try {
+      // cheack user authenticate or not 
       const user = await User.findOne({ email: req.body.email });
       if (user) {
          const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
@@ -51,8 +52,9 @@ export const google = async (req, res, next) => {
             .status(200)
             .json(rest);
       } else {
+         // generate a new password for the user if not found in the database
          const generatedPassword =
-            Math.random().toString(36).slice(-8) +
+            Math.random().toString(36).slice(-8) +         // 36 means 0-9 number and all letter combinations A-Z here create 16 length 0f password 
             Math.random().toString(36).slice(-8);
          const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
          const newUser = new User({
@@ -72,6 +74,7 @@ export const google = async (req, res, next) => {
             .json(rest);
       }
    } catch (error) {
+      
       next(error);
    }
 };
